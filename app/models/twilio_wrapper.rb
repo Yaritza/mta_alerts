@@ -2,7 +2,7 @@ class TwilioWrapper
 	attr_reader :client, :from, :alert_id
 	
 	def initialize(alert_id)
-		@client = Twilio::REST::Client.new(ENV["STEVEN"], ENV["YOLO"])
+		@client = Twilio::REST::Client.new(ENV["SID"], ENV["AUTH_TOKEN"])
 		@from =  ENV["PHONE"]
 		@alert_id=alert_id
 	end
