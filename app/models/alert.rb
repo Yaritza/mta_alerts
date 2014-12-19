@@ -4,15 +4,17 @@ class Alert < ActiveRecord::Base
   validates_presence_of :start
   validates_presence_of :end
 
-
+# Determines whether or not a train lines have traffic updates not specified a "Good Service" 
 	def bad_service?
 		Service.find_by(name: self.service_name).traffic != "GOOD SERVICE"
 	end
 
+#Checks the current train status of a given train line(s)
 	def current_train_status
 		Service.find_by(name: self.service_name).traffic
 	end
 
+#Checks if there are changes to the train service status as compared to the last train status sent out to a recipient.
 	def changed_service?
 		(self.last_alert_status != nil) && (self.last_alert_status != self.current_train_status)
 	end
